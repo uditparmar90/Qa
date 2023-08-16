@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon"
+        href="/home/ouiteo/Github Projects/Quiz/Quiz/Quizabc/Qa/qa1/static/favicon.ico">
+    <title>Sign Up</title>
+
+</head>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 40vh;
+    }
+
+    .main {
+        display: flex;
+        background: greenyellow;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+
+<body>
+    <div class="main">
+        <form action="">
+            <div>
+                <label for="full_name">name</label>
+                <input type="text" name="name" id="full_name" required maxlength="20">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required maxlength="20">
+            </div>
+            <div>
+                <label for="number">Phone no.</label>
+                <input type="tel" name="number" id="number" required maxlength="10">
+
+            </div>
+
+            <div>
+                <label>Gender : </label>
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="gender">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="gender">Female</label>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="Password" name="password" id="password" required maxlength="20">
+
+            </div>
+            <div>
+                <label for="c_Password">Conform Password</label>
+                <input type="Password" name="c_Password" id="c_Password" required maxlength="20">
+
+            </div>
+            <div>
+                <label for="t&c">Agree to our <a href="#">Tarms & Conditions</a></label>
+                <input type="checkbox" id="t&c">
+
+            </div>
+            <div>
+                <input type="submit">
+
+            </div>
+
+
+        </form>
+    </div>
+</body>
+
+</html>
