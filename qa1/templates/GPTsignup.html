@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "GPTindex.html" %}
+  {% comment %} {% block title %}
+My Page Title
+{% endblock title %} {% endcomment %}
+{%load static%}
+{% block title %}TodoList{% endblock title %}
+{% comment %} {%block head%}<link rel="icon" type="image/x-icon" url="{% static '/favicon.ico' %}">{%endblock head%} {% endcomment %}
+{% block head %}
+    <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+{% endblock head %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon"
-        href="/home/ouiteo/Github Projects/Quiz/Quiz/Quizabc/Qa/qa1/static/download.png">
-    <title>Sign Up</title>
-    <style>
-        body {
+
+  {% comment %} <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> {% endcomment %}
+{%block style%}
+    
+    
+body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
@@ -22,8 +28,8 @@
             background-color: #f0f0f0;
         }
 
-        form {
-            background-color: rgba(253, 239, 255, 0.966);
+        .signup {
+            {% comment %} background-color: rgba(253, 239, 255, 0.966); {% endcomment %}
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -72,12 +78,11 @@
             color: blue;
             text-decoration: none;
         }
-    </style>
-</head>
+{%endblock style%}
 
-<body>
-    <div class="main">
-        <form action="">
+{%block body%}
+<div class="main">
+        <form action="" class="signup">
             <div style="display: flex; align-items: center;justify-content: center; flex-direction: column;">
                 <h2>welcome to TodoList</h2>
                 <h3>Sign Up</h3>
@@ -121,6 +126,5 @@
             </div>
         </form>
     </div>
-</body>
 
-</html>
+{%endblock body%}
