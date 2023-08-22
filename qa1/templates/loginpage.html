@@ -90,42 +90,15 @@ body {
 <div class="main">
         <form action="" class="signup">
             <div style="display: flex; align-items: center;justify-content: center; flex-direction: column;">
-                <h2>welcome to TodoList</h2>
-                <h3>Sign Up</h3>
-            </div>
-            <div>
-                <label for="full_name">Name:</label>
-                <input type="text" name="name" id="full_name" required maxlength="20">
+                {% comment %} <h2></h2> {% endcomment %}
+                <h3>Sign in</h3>
             </div>
             <div>
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required maxlength="50">
             </div>
-            <div>
-                <label for="number">Phone no.:</label>
-                <input type="tel" name="number" id="number" required maxlength="10">
-            </div>
-            <div style="display: flex; flex-direction: row;">
-                <label>Gender:</label>
-                <input type="radio" id="male" name="gender" value="Male" style="padding: 0px; margin: 0;">
-                <label for="male">Male</label>
-                <input type="radio" id="female" name="gender" value="Female">
-                <label for="female">Female</label>
-            </div>
-            <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required maxlength="20">
-            </div>
-            <div>
-                <label for="c_Password">Confirm Password:</label>
-                <input type="password" name="c_Password" id="c_Password" required maxlength="20">
-            </div>
-            <div>
-                <div style="display: flex; flex-direction: row;">
-                    <input type="checkbox" id="t&c" required>
-                    <label for="t&c">Agree to our <a href="#">Terms & Conditions</a></label>
-                </div>
-
             </div>
             <div>
                 <input type="submit" onclick="submitForm()" value="Sign Up">
