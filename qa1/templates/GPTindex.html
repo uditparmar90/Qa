@@ -1,3 +1,4 @@
+  {% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
 {% load static%}
@@ -7,8 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>{% block title %}TodoList{% endblock title %}</title>
+  <title>{% block title %}{% endblock title %}</title>
   <link rel="icon" href="static/favicon.ico">
+  <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- fontAwesome icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -23,7 +27,7 @@
 <body>
     <!-- {% load static %} -->
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="position:sticky; top:0;">
     <div class="container">
 
       {% comment %}  {% endcomment %}
@@ -47,8 +51,9 @@
             <a class="nav-link" href="#" style="color:white;">More Features</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" style="display: flex !important;
+      margin:5px;">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
           <button class="btn btn-outline-light" type="submit" style="border:none;"><i class="fas fa-search"></i></button>
         </form>
         <ul class="navbar-nav">
@@ -61,6 +66,7 @@
   </nav>
 
   <!-- Main Content -->
+  
   {%block body%}{%endblock body%}
     <!-- Your main content goes here -->
   </main>
@@ -77,9 +83,12 @@
 
   <!-- Bootstrap JS (Optional, if needed) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+  {% comment %} <script>
     {%block script%}{%endblock script%}
-  </script>
+  </script> {% endcomment %}
 </body>
 
 </html>
