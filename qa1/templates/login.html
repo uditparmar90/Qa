@@ -85,14 +85,15 @@ body {
 {%block body%}
 
 <div class="main">
-        <form action="" class="signup">
+        <form method="POST" class="signup">
+             {% csrf_token %} 
             <div style="display: flex; align-items: center;justify-content: center; flex-direction: column;">
                 <h3>Welcome back!</h3>
             </div>
             <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required maxlength="20" placeholder="&#xf0e0;Enter your email" style="font-family:Arial, FontAwesome"/>
-            </div>
+                <label for="email">Username:</label>
+                <input type="text" name="username" id="email" required maxlength="20" placeholder="&#xf0e0;Enter your username" style="font-family:Arial, FontAwesome"/>
+            </div>  
             <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required maxlength="20" placeholder="&#xf023;Enter password" style="font-family:Arial, FontAwesome"/>
