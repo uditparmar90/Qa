@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -14,18 +14,14 @@ def sign_up(request):
         email=request.POST.get('email')
         password=request.POST.get('password')
         c_password=request.POST.get('c_password')
-
         my_users=User.objects.create_user(name,email,password)
-        my_users.save()
-        return render(request,'login.html')
-
-
-
-
-
-        print(name,email,number,gender,password,c_password)
-
-    return render(request,'GPTsignup.html')
+        if password !=c_password:
+            alert=HttpResponse('password are not same')
+            return render(request,'GPTsignup.html')        
+        else:
+            my_users.save()
+            return render(request,'login.html')
+        return render(request,'GPTsignup.html') 
 
 def login(request):
     return render (request,'index.html')
