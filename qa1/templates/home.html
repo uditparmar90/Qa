@@ -9,6 +9,9 @@
   </head>
   <body>
     <h1>welcome to {{user}}</h1>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    {% comment %} <button name="logout">logout</button> {% endcomment %}
 	<script src="index.js"></script>
   </body>
 </html>
