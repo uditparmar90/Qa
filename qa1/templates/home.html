@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>welcome to {{user}}</h1>
-    <a href="{% url 'logout' %}">Logout</a>
+{% extends 'GPTindex.html' %}
+{%load static%}
 
-    {% comment %} <button name="logout">logout</button> {% endcomment %}
-	<script src="index.js"></script>
-  </body>
-</html>
+{% block title %}TodoList{% endblock title %}
+{% block head %}
+{% endblock head %}
+{%block style%}{%endblock style%}
+
+{%block body%}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong id="welcome_name">{{user}}</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+ 
+
+{%endblock body%}
+
+
+{%block script%}
+{%endblock script%}

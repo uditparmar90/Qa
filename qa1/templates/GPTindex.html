@@ -1,4 +1,3 @@
-  {% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
 {% load static%}
@@ -8,18 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>{% block title %}{% endblock title %}</title>
-  <link rel="icon" href="static/favicon.ico">
-  <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script>
-  
+  <title>{% block title %}{% endblock title %}</title> 
+    <!-- fontAwesome icon -->
+  <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- fontAwesome icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script>
+  <!-- jQuery cdn link -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js">
+    </script>
+
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
   {%block head%}{%endblock head%}
 </head>
 <style>
+  .user_content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            {% comment %} transform: translate(50%, 50%); {% endcomment %}
+            width: 500px;
+            height: 200px;
+            text-align: center;
+            background-color:hsl(0, 0%, 75%)
+;
+            box-sizing: border-box;
+            {% comment %} padding: 10px; {% endcomment %}
+            z-index: 100;
+            display: none;
+        }
+          
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            background-color: red;
+            color: white;
+            border-radius: 75%;
+            padding: 4px;
+        }
     {%block style%}{%endblock style%}
   
 </style>
@@ -29,8 +54,6 @@
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="position:sticky; top:0;">
     <div class="container">
-
-      {% comment %}  {% endcomment %}
       <a class="navbar-brand" href="static/download.png"><img src="{% static 'favicon.ico' %}" alt="Favicon" style="border-radius:25%;"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,10 +62,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item" >
-            <a class="nav-link" href="#" style="color:white;">Home</a>
+            <a class="nav-link" href="" style="color:white;">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" style="color:white;">Sign Up</a>
+            <a class="nav-link" href="{% url 'signup' %}" style="color:white;">Sign Up</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="color:white;">About Us</a>
@@ -58,7 +81,29 @@
         </form>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-user" style="color:white;"></i></a>
+            <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-user" style="color:white; background:inherit;"></i>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Welcome {{user}}</a>
+    <button class="dropdown-item" href="{% url 'logout'%}">logout</button>
+    <a class="dropdown-item" href="#">{{email}}</a>
+  </div>
+</div>
+            {% comment %} <button button="background-color: inherit;
+    border: none;" onclick="togglePopup()"><a class="nav-link" href="#"><i class="fas fa-user" style="color:white; background:in;"></i></a></button>
+
+    <div class="user_content">
+        <div onclick="togglePopup()" class="close-btn">
+            ×
+        </div>
+        <tr>
+            <td>{username}sdcsdvffadsd</td>
+            <td>{username}</td>
+
+        </p>
+    </div> {% endcomment %}
           </li>
         </ul>
       </div>
@@ -86,9 +131,9 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-  {% comment %} <script>
+ <script>
     {%block script%}{%endblock script%}
-  </script> {% endcomment %}
+  </script> 
 </body>
 
 </html>

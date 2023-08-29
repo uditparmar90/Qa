@@ -1,13 +1,9 @@
 {% extends 'GPTindex.html' %}
 {%load static%}
 {% block title %}TodoList{% endblock title %}
-{% comment %} {%block head%}<link rel="icon" type="image/x-icon" url="{% static '/favicon.ico' %}">{%endblock head%} {% endcomment %}
-{% block head %}
-    <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
-{% endblock head %}
 
+{% block head %}{% endblock head %}
 
-  {% comment %} <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> {% endcomment %}
 {%block style%}
     
     
@@ -100,6 +96,9 @@ body {
             </div>
             <div>
                 <input type="submit" onclick="submitForm()" value="Log In" style="display:flex;">
+            </div>
+            <div>
+                <a href="signup/">New User ?</a>
             </div>
         </form>
     </div>
