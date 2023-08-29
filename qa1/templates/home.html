@@ -7,6 +7,7 @@
 {%block style%}{%endblock style%}
 
 {%block body%}
+{% comment %} ....................desmesiable alert...................... {% endcomment %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong id="welcome_name">{{user}}</strong> You should check in on some of those fields below.
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -14,10 +15,93 @@
   </button>
 </div>
 
+{% comment %} ...................main content............................ {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+  <title>ToDo List</title>
+  <style>
+    .task-list {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mt-5">ToDo List</h1>
+    
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="text" class="form-control" id="newTask" placeholder="Enter a new task">
+          <div class="input-group-append">
+            <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center task-list">
+      <div class="col-md-6">
+        <ul class="list-group" id="taskList">
+          <span id="desc">
+          <!-- Tasks will be dynamically added here -->
+          <span class='list-group-item' id="span1">trmContent</span>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    {% comment %} ...............add item............... {% endcomment %}
+    document.addEventListener('DOMContentLoaded', function(){
+      let addTaskBtn=document.getElementById('addTaskBtn');
+      let taskInp=document.getElementById('newTask');
+      let taskList=document.getElementById('taskList');
+
+      addTaskBtn.addEventListener('click',function(){
+        const taskText = taskInp.value.trim();
+
+        if(taskText !==''){
+
+                const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+
+          let trmContent=document.createElement('span');
+         // trmContent.classList.add('list-group-item');//
+                    trmContent.textContent=taskText;
+
+          let editButton=document.createElement('button');
+          editButton.classList.add('btn', 'btn-info', 'btn-sm');
+          editButton.textContent='Edit'; 
+          console.log(trmContent)
+          console.log(editButton)
+
+
+          listItem.appendChild(trmContent);
+          listItem.appendChild(editButton);
+
+          var task=document.getElementById('span1')
+          task.innerHTML=trmContent
+          taskList.innerHTML="<button class='btn', 'btn-info', 'btn-sm'>editButton</button>"
+
+          taskInp.value='';
+      }
+
+      })
+    })
+  </script>
+</body>
+</html>
+
+
  
 
 {%endblock body%}
 
 
-{%block script%}
-{%endblock script%}
+{% comment %} {%block script%}
+{%endblock script%} {% endcomment %}

@@ -54,7 +54,7 @@
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="position:sticky; top:0;">
     <div class="container">
-      <a class="navbar-brand" href="static/download.png"><img src="{% static 'favicon.ico' %}" alt="Favicon" style="border-radius:25%;"></a>
+      <a class="navbar-brand" href=""><img src="{% static 'todolist.jpeg' %}" alt="Favicon" style="height:38px;width:38px; border-radius:10px;"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -79,6 +79,7 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
           <button class="btn btn-outline-light" type="submit" style="border:none;"><i class="fas fa-search"></i></button>
         </form>
+        {% comment %} ....................user profile........................... {% endcomment %}
         <ul class="navbar-nav">
           <li class="nav-item">
             <div class="dropdown">
@@ -91,19 +92,6 @@
     <a class="dropdown-item" href="#">{{email}}</a>
   </div>
 </div>
-            {% comment %} <button button="background-color: inherit;
-    border: none;" onclick="togglePopup()"><a class="nav-link" href="#"><i class="fas fa-user" style="color:white; background:in;"></i></a></button>
-
-    <div class="user_content">
-        <div onclick="togglePopup()" class="close-btn">
-            ×
-        </div>
-        <tr>
-            <td>{username}sdcsdvffadsd</td>
-            <td>{username}</td>
-
-        </p>
-    </div> {% endcomment %}
           </li>
         </ul>
       </div>
