@@ -24,18 +24,14 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            {% comment %} transform: translate(50%, 50%); {% endcomment %}
             width: 500px;
             height: 200px;
             text-align: center;
-            background-color:hsl(0, 0%, 75%)
-;
+            background-color:hsl(0, 0%, 75%);
             box-sizing: border-box;
-            {% comment %} padding: 10px; {% endcomment %}
             z-index: 100;
             display: none;
-        }
-          
+        }  
         .close-btn {
             position: absolute;
             right: 20px;
@@ -45,12 +41,10 @@
             border-radius: 75%;
             padding: 4px;
         }
-    {%block style%}{%endblock style%}
-  
+    {%block style%}{%endblock style%} 
 </style>
 
 <body>
-    <!-- {% load static %} -->
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="position:sticky; top:0;">
     <div class="container">
@@ -79,6 +73,11 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
           <button class="btn btn-outline-light" type="submit" style="border:none;"><i class="fas fa-search"></i></button>
         </form>
+
+        <!-- Add Task Popup Button -->
+<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalLong">
+  <i class="fa-solid fa-plus" style="color:white; border-radius:none;"></i>
+</button>
         {% comment %} ....................user profile........................... {% endcomment %}
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -99,6 +98,9 @@
   </nav>
 
   <!-- Main Content -->
+
+  
+  
   
   {%block body%}{%endblock body%}
     <!-- Your main content goes here -->

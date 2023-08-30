@@ -1,7 +1,82 @@
-<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
-  <a class="navbar-brand" href="#">Navbar</a>
-</nav>
-<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
-  <h4 id="scrollspyHeading1">First heading</h4>
-  <p id="desc"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .outlined-container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5 .outlined-container" style="margin-top: 3rem!important; width: 600px; border: 1px solid border-radius: 14px; padding: 24px;">
+    <h5 class="mb-3">Add Task</h5>
+    <form style="display:flex; flex-direction:column;">
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderTitle">Reminder Title:</label>
+            <input type="text" class="form-control" id="reminderTitle" placeholder="Enter reminder title">
+        </div>
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderDate">Date:</label>
+            <input type="date" class="form-control" id="reminderDate">
+        </div>
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderTime">Time:</label>
+            <input type="time" class="form-control" id="reminderTime">
+        </div>
+        <button type="submit" class="btn btn-primary">Set Reminder</button>
+    </form>
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5 .outlined-container" style="margin-top: 3rem!important; width: 600px; border: 1px solid border-radius: 14px; padding: 24px;">
+    <h5 class="mb-3">Add Task</h5>
+    <form style="display:flex; flex-direction:column;">
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderTitle">Reminder Title:</label>
+            <input type="text" class="form-control" id="reminderTitle" placeholder="Enter reminder title">
+        </div>
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderDate">Date:</label>
+            <input type="date" class="form-control" id="reminderDate">
+        </div>
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderTime">Time:</label>
+            <input type="time" class="form-control" id="reminderTime">
+        </div>
+        <button type="submit" class="btn btn-primary">Set Reminder</button>
+    </form>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

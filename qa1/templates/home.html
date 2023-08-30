@@ -23,37 +23,73 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2 class="text-center mt-5">ToDo List</h2>
+  {% comment %} <div class="container">
+    <h2 class="text-center mt-5">Add your Tasks</h2>
     
     <div class="row justify-content-center mt-1">
       <div class="col-md-6">
-        <div class="input-group">
-          <input type="text" class="form-control" id="newTask" placeholder="Enter a new task">
-          <div class="input-group-append">
-            <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
-          </div>
+        <div class="input-group" style="display: flex;">
+    <input type="text" class="form-control" id="newTask" placeholder="Enter a new task">
+    <div class="input-group-append">
+        <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
+    </div>
+</div>
+      </div>
+    </div> {% endcomment %}
+
+
+    <!-- Add Task Popup -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container .outlined-container" style=" border: 1px solid border-radius: 14px;">
+          
+    <form style="display:flex; flex-direction:column;">
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderTitle">Reminder Title:</label>
+            <input type="text" class="form-control" id="newTask" placeholder="Enter reminder title">
         </div>
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderDate">Date:</label>
+            <input type="date" class="form-control" id="reminderDate">
+        </div>
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <label for="reminderTime">Time:</label>
+            <input type="time" class="form-control" id="reminderTime">
+        </div>
+        <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
+    </form>
+</div>
       </div>
     </div>
+  </div>
+</div>
 
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
-  <a class="navbar-brand" href="#">Redenty added Tasks</a>
+  <a class="navbar-brand" href="#">Recenty added Tasks</a>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
-  <p id="desc"></p>
+  {% comment %} <p id="desc"></p> {% endcomment %}
 </div>
 
 
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    let addTaskBtn = document.getElementById('addTaskBtn');
+   // let addTaskBtn = document.getElementById('addTaskBtn');
     let taskInp = document.getElementById('newTask');
     let taskList = document.getElementById('taskList');
 
     addTaskBtn.addEventListener('click', function() {
+     // $("addTaskBtn").click(function(){
         let taskText = taskInp.value.trim();
 
         if (taskText !== '') {
@@ -61,7 +97,7 @@
             listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
 
             let trmContent = document.createElement('span');
-            trmContent.style.flaxWrap= "wrap";
+            trmContent.style.flaxWrap= "wrap";  
             trmContent.textContent = taskText;
 
             let editButton = document.createElement('button');
@@ -71,7 +107,7 @@
             listItem.appendChild(trmContent);
             listItem.appendChild(editButton);
 
-            taskList.appendChild(listItem); // Corrected this line to append to taskList
+            taskList.appendChild(listItem);
 
             taskInp.value = '';
         }
