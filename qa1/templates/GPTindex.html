@@ -128,9 +128,6 @@
       <i class="fa-solid fa-sun" id="sun" onclick="darkMode()"></i>
       <i class="fa-solid fa-moon" id="moon" onclick="lightMode()"></i>
     </li>
-    <li class="nav-item">
-      
-    </li>
         </ul>
       </div>
     </div>
@@ -196,6 +193,11 @@
     let body = document.getElementsByTagName("body")[0];
     body.style.backgroundColor = "white";
     body.style.Color="black";
+
+    let recent=document.querySelector(".navbar.navbar-light.px-3.mt-5.mb-0.bg-secondary.text-light-important");
+    recent.classList.add("bg-light");
+    recent.classList.remove("bg-secondary");
+    recent.classList.remove("text-light-important");
 
   }
     {%block script%}{%endblock script%}

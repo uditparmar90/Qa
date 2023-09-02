@@ -89,11 +89,10 @@
     let taskInp = document.getElementById('newTask');
     let taskList = document.getElementById('taskList');
 
+    //--------------------Add task-----------------------
+
     addTaskBtn.addEventListener('click', function() {
         let taskText = taskInp.value.trim();
-
-    
-
         if (taskText !== '') {
             let listItem = document.createElement('li');
             listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
