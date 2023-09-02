@@ -41,12 +41,42 @@
             border-radius: 75%;
             padding: 4px;
         }
+        .nav-item{
+          cursor:pointer;
+          padding:4px;
+        }
+        #sun{
+            font-family: "Font Awesome 6 Free";
+            font-weight: 700;
+            color:white;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            width: 20px;
+            height: 20px;
+    }
+    #moon{
+      font-family: "Font Awesome 6 Free";
+      font-weight: 700;
+      display: flex;
+      color: white;
+      justify-content: center;
+      align-items: center; 
+      display:none;
+      padding: 8px;
+      width: 20px;
+      height: 20px;
+
+    }
+    .text-light-important {
+      color: white !important;
+  }
     {%block style%}{%endblock style%} 
 </style>
 
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="position:sticky; top:0;">
+  <nav class="navbar navbar-expand-lg bg-danger" style="position:sticky; top:0;">
     <div class="container">
       <a class="navbar-brand" href=""><img src="{% static 'todolist.jpeg' %}" alt="Favicon" style="height:38px;width:38px; border-radius:10px;"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -86,12 +116,21 @@
     <i class="fas fa-user" style="color:white; background:inherit;"></i>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div style="z-index:1;">
     <a class="dropdown-item" href="#">Welcome {{user}}</a>
     <button class="dropdown-item" href="{% url 'logout'%}">logout</button>
     <a class="dropdown-item" href="#">{{email}}</a>
+    </div>
   </div>
 </div>
-          </li>
+  </li>
+    <li class="nav-item">
+      <i class="fa-solid fa-sun" id="sun" onclick="darkMode()"></i>
+      <i class="fa-solid fa-moon" id="moon" onclick="lightMode()"></i>
+    </li>
+    <li class="nav-item">
+      
+    </li>
         </ul>
       </div>
     </div>
@@ -107,7 +146,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-dark text-light text-center py-3" style="position:sticky; margin-bottom:0px;">
+  <footer class="bg-dark text-light text-center py-3" >
     <p>Copyright © 2023 The Example Company</p>
     <p>
       <a href="about.html" class="text-light">About</a> -
@@ -122,6 +161,43 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
  <script>
+  function darkMode(){
+    document.getElementById("sun").style.display="none";
+    document.getElementById("moon").style.display="block";
+    //let navbar=document.getElementByClass("navbar navbar-expand-lg bg-danger")
+    //navbar.classList.replace("navbar navbar-expand-lg bg-primary"); 
+
+    let navbar = document.querySelector(".navbar.navbar-expand-lg.bg-danger");
+    navbar.classList.remove("bg-danger");
+    navbar.classList.add("bg-secondary");
+
+    let body = document.getElementsByTagName("body")[0];
+    body.style.backgroundColor = "rgb(74, 74, 74)";
+    body.style.Color="white";
+
+    let recent=document.querySelector(".navbar.navbar-light.bg-light.px-3.mt-5.mb-0");
+    recent.classList.remove("bg-light");
+    recent.classList.add("bg-secondary");
+    recent.classList.add("text-light-important");
+
+    
+
+  }
+  function lightMode(){
+
+
+    document.getElementById("sun").style.display="block";
+    document.getElementById("moon").style.display="none";
+
+    let navbar = document.querySelector(".navbar.navbar-expand-lg.bg-secondary");
+    navbar.classList.remove("bg-secondary");
+    navbar.classList.add("bg-danger");
+
+    let body = document.getElementsByTagName("body")[0];
+    body.style.backgroundColor = "white";
+    body.style.Color="black";
+
+  }
     {%block script%}{%endblock script%}
   </script> 
 </body>

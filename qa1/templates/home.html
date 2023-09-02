@@ -74,7 +74,7 @@
 
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
-  <a class="navbar-brand" href="#">Recenty added Tasks</a>
+  <a class="navbar-brand" href="#">Recently added Tasks</a>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
   {% comment %} <p id="desc"></p> {% endcomment %}
@@ -82,15 +82,17 @@
 
 
 
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-   // let addTaskBtn = document.getElementById('addTaskBtn');
+    let addTaskBtn = document.getElementById('addTaskBtn');
     let taskInp = document.getElementById('newTask');
     let taskList = document.getElementById('taskList');
 
     addTaskBtn.addEventListener('click', function() {
-     // $("addTaskBtn").click(function(){
         let taskText = taskInp.value.trim();
+
+    
 
         if (taskText !== '') {
             let listItem = document.createElement('li');
