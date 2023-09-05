@@ -14,9 +14,7 @@
   <!-- jQuery cdn link -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js">
     </script>
-
   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-
   {%block head%}{%endblock head%}
 </head>
 <style>
@@ -114,7 +112,7 @@
             <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-user" style="color:white; background:inherit;"></i>
-  </button>
+  </button>        
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <div style="z-index:1;">
     <a class="dropdown-item" href="#">Welcome {{user}}</a>
@@ -123,6 +121,7 @@
     </div>
   </div>
 </div>
+
   </li>
     <li class="nav-item">
       <i class="fa-solid fa-sun" id="sun" onclick="darkMode()"></i>
@@ -134,9 +133,6 @@
   </nav>
 
   <!-- Main Content -->
-
-  
-  
   
   {%block body%}{%endblock body%}
     <!-- Your main content goes here -->
@@ -176,13 +172,8 @@
     recent.classList.remove("bg-light");
     recent.classList.add("bg-secondary");
     recent.classList.add("text-light-important");
-
-    
-
   }
   function lightMode(){
-
-
     document.getElementById("sun").style.display="block";
     document.getElementById("moon").style.display="none";
 
@@ -198,7 +189,6 @@
     recent.classList.add("bg-light");
     recent.classList.remove("bg-secondary");
     recent.classList.remove("text-light-important");
-
   }
     {%block script%}{%endblock script%}
   </script> 

@@ -38,7 +38,7 @@
     </div> {% endcomment %}
 
 
-    <!-- Add Task Popup -->
+    <!-- ........Add Task Popup.......................................... -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -50,19 +50,18 @@
       </div>
       <div class="modal-body">
         <div class="container .outlined-container" style=" border: 1px solid border-radius: 14px;">
-          
-    <form style="display:flex; flex-direction:column;">
+    <form  method='POST' action="{%url 'addtask'%}" form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-            <label for="reminderTitle">Reminder Title:</label>
-            <input type="text" class="form-control" id="newTask" placeholder="Enter reminder title">
+          <label for="newTask">Reminder Title:</label>
+          <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
         </div>
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
             <label for="reminderDate">Date:</label>
-            <input type="date" class="form-control" id="reminderDate">
+            <input type="date" class="form-control" id="reminderDate" name="reminderDate">
         </div>
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
             <label for="reminderTime">Time:</label>
-            <input type="time" class="form-control" id="reminderTime">
+            <input type="time" class="form-control" id="reminderTime" name="reminderTime">
         </div>
         <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
     </form>
@@ -75,15 +74,13 @@
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
   <a class="navbar-brand" href="#">Recently added Tasks</a>
+  <h2>{{date}} {{time}}{{title}}</h2>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
   {% comment %} <p id="desc"></p> {% endcomment %}
 </div>
 
-
-
-
-  <script>
+  {% comment %} <script>
     document.addEventListener('DOMContentLoaded', function() {
     let addTaskBtn = document.getElementById('addTaskBtn');
     let taskInp = document.getElementById('newTask');
@@ -114,7 +111,7 @@
         }
     });
 });
-</script>
+</script> {% endcomment %}
   
 </body>
 </html>
