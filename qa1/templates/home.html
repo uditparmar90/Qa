@@ -4,7 +4,9 @@
 {% block title %}TodoList{% endblock title %}
 {% block head %}
 {% endblock head %}
-{%block style%}{%endblock style%}
+{%block style%}
+
+{%endblock style%}
 
 {%block body%}
 
@@ -19,6 +21,10 @@
   <style>
     .task-list {
       margin-top: 20px;
+    }
+
+    #recently-title{
+      color:#ff0e0e;
     }
   </style>
 </head>
@@ -73,14 +79,38 @@
 
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
-  <a class="navbar-brand" href="#">Recently added Tasks</a>
-  <h2>{{date}} {{time}}{{title}}</h2>
+  <a class="navbar-brand" href="#" id="recently-title">Recently added Tasks</a>
+  <button type="button" class="btn btn-outline-danger">Sort</button>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
-  {% comment %} <p id="desc"></p> {% endcomment %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in task %}
+      <tr>
+        <div >
+        <th scope="row" class="data">{{i.id}}</th>
+        <td class="data">{{i.title}}</td>
+        <td class="data">{{i.date}}</td>  
+        <td class="data">{{i.time}}</td>
+        <td class="data"><button type="button" name="ltoh" class="btn btn-outline-danger">Delete</button></td>
+        </div>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
 </div>
 
-  {% comment %} <script>
+   <script>
+    {% comment %}
     document.addEventListener('DOMContentLoaded', function() {
     let addTaskBtn = document.getElementById('addTaskBtn');
     let taskInp = document.getElementById('newTask');
@@ -110,8 +140,14 @@
             taskInp.value = '';
         }
     });
-});
-</script> {% endcomment %}
+});{% endcomment %}
+
+{% for i in tasks %}
+        console.log("Title: {{ i.title }}");
+        console.log("Date: {{ i.date }}");
+        console.log("Time: {{ i.time }}");
+        {% endfor %}
+</script> 
   
 </body>
 </html>

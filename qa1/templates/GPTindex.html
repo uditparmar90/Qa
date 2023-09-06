@@ -74,7 +74,7 @@
 
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg bg-danger" style="position:sticky; top:0;">
+  <nav class="navbar navbar-expand-lg bg-danger" style="position:sticky; top:0; z-index:2;" >
     <div class="container">
       <a class="navbar-brand" href=""><img src="{% static 'todolist.jpeg' %}" alt="Favicon" style="height:38px;width:38px; border-radius:10px;"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -166,12 +166,25 @@
 
     let body = document.getElementsByTagName("body")[0];
     body.style.backgroundColor = "rgb(74, 74, 74)";
-    body.style.Color="white";
+    body.style.color="white";
+
+    //let testrecent=document.GetElementById('#recently-title')
+    //testrecent.style.fontcolor="white";
 
     let recent=document.querySelector(".navbar.navbar-light.bg-light.px-3.mt-5.mb-0");
-    recent.classList.remove("bg-light");
     recent.classList.add("bg-secondary");
+    recent.classList.remove("bg-light");
     recent.classList.add("text-light-important");
+    //recent.style.color = "white";
+
+
+    let dataElements=document.getElementsByClassName('data');
+    for (var i = 0; i<dataElements.length; i++) {
+      dataElements[i].style.backgroundColor = "#3F3F3F";
+      dataElements[i].style.color = "#F5F5F5";
+}
+
+
   }
   function lightMode(){
     document.getElementById("sun").style.display="block";
@@ -183,14 +196,25 @@
 
     let body = document.getElementsByTagName("body")[0];
     body.style.backgroundColor = "white";
-    body.style.Color="black";
+    body.style.Color="#3F3F3F";
 
     let recent=document.querySelector(".navbar.navbar-light.px-3.mt-5.mb-0.bg-secondary.text-light-important");
     recent.classList.add("bg-light");
     recent.classList.remove("bg-secondary");
     recent.classList.remove("text-light-important");
+    //recent.style.color = "#3F3F3F";
+
+    let dataElements=document.getElementsByClassName('data');
+    for (var i = 0; i<dataElements.length; i++) {
+      dataElements[i].style.backgroundColor = "#F5F5F5";
+      dataElements[i].style.color = "#3F3F3F";
+    }
+
   }
     {%block script%}{%endblock script%}
+
+
+  
   </script> 
 </body>
 
