@@ -157,27 +157,20 @@
   function darkMode(){
     document.getElementById("sun").style.display="none";
     document.getElementById("moon").style.display="block";
-    //let navbar=document.getElementByClass("navbar navbar-expand-lg bg-danger")
-    //navbar.classList.replace("navbar navbar-expand-lg bg-primary"); 
-
+    //...........Nav Bar .......................
     let navbar = document.querySelector(".navbar.navbar-expand-lg.bg-danger");
     navbar.classList.remove("bg-danger");
     navbar.classList.add("bg-secondary");
-
+    //...........whole body .......................
     let body = document.getElementsByTagName("body")[0];
     body.style.backgroundColor = "rgb(74, 74, 74)";
     body.style.color="white";
-
-    //let testrecent=document.GetElementById('#recently-title')
-    //testrecent.style.fontcolor="white";
-
+    //...........recent title .......................
     let recent=document.querySelector(".navbar.navbar-light.bg-light.px-3.mt-5.mb-0");
     recent.classList.add("bg-secondary");
     recent.classList.remove("bg-light");
     recent.classList.add("text-light-important");
-    //recent.style.color = "white";
-
-
+    //...........data display container.......................
     let dataElements=document.getElementsByClassName('data');
     for (var i = 0; i<dataElements.length; i++) {
       dataElements[i].style.backgroundColor = "#3F3F3F";
@@ -189,21 +182,20 @@
   function lightMode(){
     document.getElementById("sun").style.display="block";
     document.getElementById("moon").style.display="none";
-
+    //...........Nav Bar .......................
     let navbar = document.querySelector(".navbar.navbar-expand-lg.bg-secondary");
     navbar.classList.remove("bg-secondary");
     navbar.classList.add("bg-danger");
-
+    //...........whole body .......................
     let body = document.getElementsByTagName("body")[0];
     body.style.backgroundColor = "white";
     body.style.Color="#3F3F3F";
-
+    //...........recent title .......................
     let recent=document.querySelector(".navbar.navbar-light.px-3.mt-5.mb-0.bg-secondary.text-light-important");
     recent.classList.add("bg-light");
     recent.classList.remove("bg-secondary");
     recent.classList.remove("text-light-important");
-    //recent.style.color = "#3F3F3F";
-
+    //...........data display container.......................
     let dataElements=document.getElementsByClassName('data');
     for (var i = 0; i<dataElements.length; i++) {
       dataElements[i].style.backgroundColor = "#F5F5F5";

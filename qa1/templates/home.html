@@ -24,24 +24,12 @@
     }
 
     #recently-title{
-      color:#ff0e0e;
+      color:#BB2124;
+      font-weight:300;
     }
   </style>
 </head>
 <body>
-  {% comment %} <div class="container">
-    <h2 class="text-center mt-5">Add your Tasks</h2>
-    
-    <div class="row justify-content-center mt-1">
-      <div class="col-md-6">
-        <div class="input-group" style="display: flex;">
-    <input type="text" class="form-control" id="newTask" placeholder="Enter a new task">
-    <div class="input-group-append">
-        <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
-    </div>
-</div>
-      </div>
-    </div> {% endcomment %}
 
 
     <!-- ........Add Task Popup.......................................... -->
@@ -80,7 +68,7 @@
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
   <a class="navbar-brand" href="#" id="recently-title">Recently added Tasks</a>
-  <button type="button" class="btn btn-outline-danger">Sort</button>
+  <button type="button" class="btn btn-outline-danger" onclick="sort_items()">Sort</button>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
   <table class="table">
@@ -93,23 +81,108 @@
         <th scope="col">Edit</th>
       </tr>
     </thead>
-    <tbody>
-      {% for i in task %}
+    <tbody id="taskc_container">
+      {% comment %} dynamic data adds here... {% endcomment %}
+
+
+        {% comment %} <td id="title"></td> {% endcomment %}
+        {% comment %} <td id="time"></td> {% endcomment %}
+        {% comment %} <td id="date"></td> {% endcomment %}
+
+      {% comment %} {% for i in task %}
       <tr>
-        <div >
-        <th scope="row" class="data">{{i.id}}</th>
-        <td class="data">{{i.title}}</td>
-        <td class="data">{{i.date}}</td>  
-        <td class="data">{{i.time}}</td>
-        <td class="data"><button type="button" name="ltoh" class="btn btn-outline-danger">Delete</button></td>
+        <div id="itemList">
+          <th scope="row" class="data">{{i.id}}</th>
+          <td class="data">{{i.title}}</td>
+          <td class="data">{{i.date}}</td>  
+          <td class="data">{{i.time}}</td>
+          <td class="data"><button type="button" name="ltoh" id="sort" class="btn btn-outline-danger">Delete</button></td> 
         </div>
       </tr>
-      {%endfor%}
+      {%endfor%} {% endcomment %}
     </tbody>
   </table>
 </div>
 
    <script>
+    var task=[{%for j in task%}
+    {"title":"{{j.title}}","date":"{{j.date}}","time":"{{j.time}}"},
+    {% if not forloop.last %},
+    {% endif %}
+    {% endfor %}]
+
+    let sort=document.getElementById('sort')
+    function sort_items(a,b){
+      var displaylog=task.sort(sort_title);
+      console.log(displaylog);
+      for(let i=0;i<task.length;i++){
+        if(task[i]){
+        //console.log(task[i].title);
+        let row =document.createElement("tr");
+        //row.style.display="contents";
+        
+        let no=document.createElement("td");
+        no.innerHTML=i;
+        row.appendChild(no);
+      
+        let title=document.createElement("td");
+        title.innerHTML=task[i].title;
+        row.appendChild(title);
+      
+        let date=document.createElement("td");
+        date.innerHTML=task[i].date;
+        row.appendChild(date);
+      
+        let time=document.createElement("td");
+        time.innerHTML=task[i].time;
+        row.appendChild(time);
+      
+        let editButton=document.createElement("button");
+        editButton.classList.add("btn","btn-primary")
+        editButton.innerHTML="Edit";
+        editButton.style.padding = "5px 10px";
+        editButton.style.margin= "10px 0px";
+        row.appendChild(editButton);
+      
+        taskc_container.appendChild(row);
+      }
+      }
+    }
+
+    function sort_title(a,b){
+      const titleA=a.title.toLowerCase();
+      const titleB=b.title.toLowerCase();
+
+      if(titleA<titleB){
+        return -1;
+      }else if(titleA>titleB){
+        return 1;
+      }else{
+        return 0;
+      }
+    }
+
+    
+  
+  //     // Get all the li elements within the ul
+  //     var li = itemList.getElementsByTagName('li');
+  
+  //     // Create an array to store the text content of li elements as numbers
+  //     var arr = [];
+  
+  //     for (var i = 0; i < li.length; i++) {
+  //         arr.push(Number(li[i].innerText));
+  //     }
+  
+  //     // Sort the array numerically
+  //     arr.sort(function(a, b) {
+  //         return a - b;
+  //     });
+  
+  //     // Update the li elements with the sorted content
+  //     for (var i = 0; i < li.length; i++) {
+  //         li[i].innerText = arr[i];
+  //     }
     {% comment %}
     document.addEventListener('DOMContentLoaded', function() {
     let addTaskBtn = document.getElementById('addTaskBtn');
@@ -125,7 +198,7 @@
             listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
 
             let trmContent = document.createElement('span');
-            trmContent.style.flaxWrap= "wrap";  
+            trmContent.style.flaxWrap= "wrap"; 
             trmContent.textContent = taskText;
 
             let editButton = document.createElement('button');
@@ -142,13 +215,52 @@
     });
 });{% endcomment %}
 
-{% for i in tasks %}
+{% comment %} {% for i in tasks %}
         console.log("Title: {{ i.title }}");
         console.log("Date: {{ i.date }}");
         console.log("Time: {{ i.time }}");
         {% endfor %}
-</script> 
+ {% endcomment %}
+
+{% comment %} let title=document.getElementById('title') {% endcomment %}
+{% comment %} let time=document.getElementById('time') {% endcomment %}
+{% comment %} let date=document.getElementById('date') {% endcomment %}
+for(let i=0;i<task.length;i++){
+  if(task[i]){
+  //console.log(task[i].title);
+  let row =document.createElement("tr");
+  //row.style.display="contents";
   
+  let no=document.createElement("td");
+  no.innerHTML=i;
+  row.appendChild(no);
+
+  let title=document.createElement("td");
+  title.innerHTML=task[i].title;
+  row.appendChild(title);
+
+  let date=document.createElement("td");
+  date.innerHTML=task[i].date;
+  row.appendChild(date);
+
+  let time=document.createElement("td");
+  time.innerHTML=task[i].time;
+  row.appendChild(time);
+
+  let editButton=document.createElement("button");
+  editButton.classList.add("btn","btn-primary")
+  editButton.innerHTML="Edit";
+  editButton.style.padding = "5px 10px";
+  editButton.style.margin= "10px 0px";
+  row.appendChild(editButton);
+
+  taskc_container.appendChild(row);
+}
+}
+
+</script>  
+
+
 </body>
 </html>
 
