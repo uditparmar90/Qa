@@ -29,9 +29,9 @@
     }
   </style>
 </head>
-<body>
+<body onload="defaultsort()">
 
-
+  
     <!-- ........Add Task Popup.......................................... -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -68,7 +68,13 @@
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
   <a class="navbar-brand" href="#" id="recently-title">Recently added Tasks</a>
-  <button type="button" class="btn btn-outline-danger" onclick="sort_items()">Sort</button>
+<div class="btn-group">
+  <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#" onclick="sort_items()">A-Z</a>
+    <a class="dropdown-item" href="#" onclick="applysortdate()">Recent date</a>
+    <a class="dropdown-item" href="#" onclick="defaultsort()">recent Added</a>
+</div>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
   <table class="table">
@@ -81,7 +87,7 @@
         <th scope="col">Edit</th>
       </tr>
     </thead>
-    <tbody id="taskc_container">
+    <tbody id="task_container">
       {% comment %} dynamic data adds here... {% endcomment %}
 
 
@@ -105,16 +111,24 @@
 </div>
 
    <script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+  }
+
     var task=[{%for j in task%}
-    {"title":"{{j.title}}","date":"{{j.date}}","time":"{{j.time}}"},
-    {% if not forloop.last %},
+    {"title":"{{j.title}}",
+    "date":"{{j.date}}",
+    "time":"{{j.time}}"},
+    {% if not forloop.last %}
     {% endif %}
     {% endfor %}]
+    console.log(task);
 
     let sort=document.getElementById('sort')
     function sort_items(a,b){
-      var displaylog=task.sort(sort_title);
-      console.log(displaylog);
+      //location.reload();
+      task.sort(sort_title);
+      task_container.innerHTML="";
       for(let i=0;i<task.length;i++){
         if(task[i]){
         //console.log(task[i].title);
@@ -144,7 +158,7 @@
         editButton.style.margin= "10px 0px";
         row.appendChild(editButton);
       
-        taskc_container.appendChild(row);
+        task_container.appendChild(row);
       }
       }
     }
@@ -152,10 +166,60 @@
     function sort_title(a,b){
       const titleA=a.title.toLowerCase();
       const titleB=b.title.toLowerCase();
-
       if(titleA<titleB){
         return -1;
       }else if(titleA>titleB){
+        return 1;
+      }else{
+        return 0;
+      }
+    }
+    function applysortdate(){
+      task.sort(sort_date);
+      console.log(task);
+      task_container.innerHTML='';
+
+      for(var i=0;i<task.length;i++){
+        if(task[i]){
+          //console.log(task[i].title);
+        let row =document.createElement("tr");
+        //row.style.display="contents";
+        
+        let no=document.createElement("td");
+        no.innerHTML=i;
+        row.appendChild(no);
+      
+        let title=document.createElement("td");
+        title.innerHTML=task[i].title;
+        row.appendChild(title);
+      
+        let date=document.createElement("td");
+        date.innerHTML=task[i].date;
+        row.appendChild(date);
+      
+        let time=document.createElement("td");
+        time.innerHTML=task[i].time;
+        row.appendChild(time);
+      
+        let editButton=document.createElement("button");
+        editButton.classList.add("btn","btn-primary")
+        editButton.innerHTML="Edit";
+        editButton.style.padding = "5px 10px";
+        editButton.style.margin= "10px 0px";
+        row.appendChild(editButton);
+      
+        task_container.appendChild(row);
+
+        }
+      }
+
+    }
+    function sort_date(a,b){
+      const date1= new Date(a.date);
+      const date2=new Date(b.date);
+      if(date1<date2){
+        return -1;
+      }else if(date1>date2){
         return 1;
       }else{
         return 0;
@@ -225,37 +289,42 @@
 {% comment %} let title=document.getElementById('title') {% endcomment %}
 {% comment %} let time=document.getElementById('time') {% endcomment %}
 {% comment %} let date=document.getElementById('date') {% endcomment %}
-for(let i=0;i<task.length;i++){
-  if(task[i]){
-  //console.log(task[i].title);
-  let row =document.createElement("tr");
-  //row.style.display="contents";
+
+function defaultsort(){
+  for(let i=0;i<task.length;i++){
+    if(task[i]){
+    //console.log(task[i].title);
+    let row =document.createElement("tr");
+    //row.style.display="contents";
+    
+    let no=document.createElement("td");
+    no.innerHTML=i;
+    row.appendChild(no);
   
-  let no=document.createElement("td");
-  no.innerHTML=i;
-  row.appendChild(no);
+    let title=document.createElement("td");
+    title.innerHTML=task[i].title;
+    row.appendChild(title);
+  
+    let date=document.createElement("td");
+    date.innerHTML=task[i].date;
+    row.appendChild(date);
+  
+    let time=document.createElement("td");
+    time.innerHTML=task[i].time;
+    row.appendChild(time);
+  
+    let editButton=document.createElement("button");
+    editButton.classList.add("btn","btn-primary")
+    editButton.innerHTML="Edit";
+    editButton.style.padding = "5px 10px";
+    editButton.style.margin= "10px 0px";
+    row.appendChild(editButton);
+  
+    task_container.appendChild(row);
+  }
+  }
+  
 
-  let title=document.createElement("td");
-  title.innerHTML=task[i].title;
-  row.appendChild(title);
-
-  let date=document.createElement("td");
-  date.innerHTML=task[i].date;
-  row.appendChild(date);
-
-  let time=document.createElement("td");
-  time.innerHTML=task[i].time;
-  row.appendChild(time);
-
-  let editButton=document.createElement("button");
-  editButton.classList.add("btn","btn-primary")
-  editButton.innerHTML="Edit";
-  editButton.style.padding = "5px 10px";
-  editButton.style.margin= "10px 0px";
-  row.appendChild(editButton);
-
-  taskc_container.appendChild(row);
-}
 }
 
 </script>  
