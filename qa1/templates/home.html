@@ -9,8 +9,6 @@
 {%endblock style%}
 
 {%block body%}
-
-{% comment %} ...................main content............................ {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,6 +79,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Status</th>
         <th scope="col">Title</th>
         <th scope="col">Date</th>
         <th scope="col">Time</th>
@@ -89,8 +88,6 @@
     </thead>
     <tbody id="task_container">
       {% comment %} dynamic data adds here... {% endcomment %}
-
-
         {% comment %} <td id="title"></td> {% endcomment %}
         {% comment %} <td id="time"></td> {% endcomment %}
         {% comment %} <td id="date"></td> {% endcomment %}
@@ -111,10 +108,11 @@
 </div>
 
    <script>
+//..................to prevent resubmission of user data........................
     if ( window.history.replaceState ) {
       window.history.replaceState( null, null, window.location.href );
   }
-
+//...................retrive data from DataBase...........................
     var task=[{%for j in task%}
     {"title":"{{j.title}}",
     "date":"{{j.date}}",
@@ -129,40 +127,8 @@
       //location.reload();
       task.sort(sort_title);
       task_container.innerHTML="";
-      for(let i=0;i<task.length;i++){
-        if(task[i]){
-        //console.log(task[i].title);
-        let row =document.createElement("tr");
-        //row.style.display="contents";
-        
-        let no=document.createElement("td");
-        no.innerHTML=i;
-        row.appendChild(no);
-      
-        let title=document.createElement("td");
-        title.innerHTML=task[i].title;
-        row.appendChild(title);
-      
-        let date=document.createElement("td");
-        date.innerHTML=task[i].date;
-        row.appendChild(date);
-      
-        let time=document.createElement("td");
-        time.innerHTML=task[i].time;
-        row.appendChild(time);
-      
-        let editButton=document.createElement("button");
-        editButton.classList.add("btn","btn-primary")
-        editButton.innerHTML="Edit";
-        editButton.style.padding = "5px 10px";
-        editButton.style.margin= "10px 0px";
-        row.appendChild(editButton);
-      
-        task_container.appendChild(row);
-      }
-      }
+      defaultsort();
     }
-
     function sort_title(a,b){
       const titleA=a.title.toLowerCase();
       const titleB=b.title.toLowerCase();
@@ -177,42 +143,7 @@
     function applysortdate(){
       task.sort(sort_date);
       console.log(task);
-      task_container.innerHTML='';
-
-      for(var i=0;i<task.length;i++){
-        if(task[i]){
-          //console.log(task[i].title);
-        let row =document.createElement("tr");
-        //row.style.display="contents";
-        
-        let no=document.createElement("td");
-        no.innerHTML=i;
-        row.appendChild(no);
-      
-        let title=document.createElement("td");
-        title.innerHTML=task[i].title;
-        row.appendChild(title);
-      
-        let date=document.createElement("td");
-        date.innerHTML=task[i].date;
-        row.appendChild(date);
-      
-        let time=document.createElement("td");
-        time.innerHTML=task[i].time;
-        row.appendChild(time);
-      
-        let editButton=document.createElement("button");
-        editButton.classList.add("btn","btn-primary")
-        editButton.innerHTML="Edit";
-        editButton.style.padding = "5px 10px";
-        editButton.style.margin= "10px 0px";
-        row.appendChild(editButton);
-      
-        task_container.appendChild(row);
-
-        }
-      }
-
+      defaultsort();
     }
     function sort_date(a,b){
       const date1= new Date(a.date);
@@ -225,9 +156,6 @@
         return 0;
       }
     }
-
-    
-  
   //     // Get all the li elements within the ul
   //     var li = itemList.getElementsByTagName('li');
   
@@ -290,25 +218,32 @@
 {% comment %} let time=document.getElementById('time') {% endcomment %}
 {% comment %} let date=document.getElementById('date') {% endcomment %}
 
+//..................print data with javascript...............
 function defaultsort(){
+  task_container.innerHTML='';
   for(let i=0;i<task.length;i++){
     if(task[i]){
-    //console.log(task[i].title);
     let row =document.createElement("tr");
-    //row.style.display="contents";
-    
     let no=document.createElement("td");
-    no.innerHTML=i;
+    no.innerHTML=i+1;
     row.appendChild(no);
-  
+
+    let isCompleted = document.createElement("td");
+      isCompleted.innerHTML = `
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault${i}" style="border:1px solid rgb(176,176,176);" onMouseover="this.style.border='3px solid #00A550'" onMouseout="this.style.border='1px solid rgb(176,176,176)'">
+          <label class="form-check-label" for="flexCheckDefault${i}">
+          </label></div>`;
+          let check = document.getElementById("form-check-input").value;
+      row.appendChild(isCompleted);
+      console.log(check);
+
     let title=document.createElement("td");
     title.innerHTML=task[i].title;
     row.appendChild(title);
-  
     let date=document.createElement("td");
     date.innerHTML=task[i].date;
     row.appendChild(date);
-  
     let time=document.createElement("td");
     time.innerHTML=task[i].time;
     row.appendChild(time);
@@ -323,21 +258,11 @@ function defaultsort(){
     task_container.appendChild(row);
   }
   }
-  
-
 }
 
 </script>  
-
-
 </body>
 </html>
-
-
- 
-
 {%endblock body%}
-
-
 {% comment %} {%block script%}
 {%endblock script%} {% endcomment %}
