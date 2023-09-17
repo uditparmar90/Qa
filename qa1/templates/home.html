@@ -114,7 +114,8 @@
   }
 //...................retrive data from DataBase...........................
     var task=[{%for j in task%}
-    {"title":"{{j.title}}",
+    {"status":"{{j.isComplated}}",
+    "title":"{{j.title}}",
     "date":"{{j.date}}",
     "time":"{{j.time}}"},
     {% if not forloop.last %}
@@ -228,16 +229,14 @@ function defaultsort(){
     no.innerHTML=i+1;
     row.appendChild(no);
 
-    let isCompleted = document.createElement("td");
-      isCompleted.innerHTML = `
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault${i}" style="border:1px solid rgb(176,176,176);" onMouseover="this.style.border='3px solid #00A550'" onMouseout="this.style.border='1px solid rgb(176,176,176)'">
-          <label class="form-check-label" for="flexCheckDefault${i}">
-          </label></div>`;
-          let check = document.getElementById("form-check-input").value;
-      row.appendChild(isCompleted);
-      console.log(check);
-
+    let isCompleted = document.createElement("input");
+    isCompleted.type="checkbox";
+    isCompleted.classList.add("form-check-input");
+    if(task[i].status!="False"){
+      isCompleted.defaultChecked=true;
+    }
+    console.log(isCompleted);
+    row.appendChild(isCompleted);
     let title=document.createElement("td");
     title.innerHTML=task[i].title;
     row.appendChild(title);
@@ -247,19 +246,23 @@ function defaultsort(){
     let time=document.createElement("td");
     time.innerHTML=task[i].time;
     row.appendChild(time);
-  
     let editButton=document.createElement("button");
     editButton.classList.add("btn","btn-primary")
+    editButton.setAttribute('id',task[i].title)
     editButton.innerHTML="Edit";
     editButton.style.padding = "5px 10px";
     editButton.style.margin= "10px 0px";
     row.appendChild(editButton);
-  
     task_container.appendChild(row);
   }
   }
 }
 
+$.ajax({
+  type:POST, 
+  data:id, 
+  url:"home/"
+})
 </script>  
 </body>
 </html>

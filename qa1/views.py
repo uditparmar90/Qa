@@ -10,7 +10,7 @@ from qa1.models import task
 
 
 def index(request):
-    
+
     return render(request, 'GPTindex.html')
 
 
@@ -48,25 +48,31 @@ def login_costom(request):
             return HttpResponse('New User')
     return render(request, 'login.html')
 
-@login_required(login_url='login')
 
+@login_required(login_url='login')
 def home(request):
     if request.method == 'POST':
         title = request.POST.get('newTask')
         date = request.POST.get('reminderDate')
         time = request.POST.get('reminderTime')
         try:
-            new_task = task(title=title, date=date, time=time)  # Use Task, not task
+            new_task = task(title=title, date=date,
+                            time=time)
             new_task.save()
-            tasks = task.objects.all().order_by('title')  # Retrieve all tasks from the database
+            # Retrieve all tasks from the database
+            tasks = task.objects.all().order_by('title')
             context = {'task': tasks}
             return render(request, 'home.html', context)
         except Exception as e:
-            print(f"Error: {str(e)}")   
+            print(f"Error: {str(e)}")
 
-    tasks = task.objects.all().order_by('-title')  # Retrieve all tasks from the database
+    # data = request.POST["data"]
+
+    # Retrieve all tasks from the database
+    tasks = task.objects.all()
     context = {'task': tasks}
     return render(request, 'home.html', context)
+
 
 def logout_custom(request):
     logout(request)
@@ -85,7 +91,7 @@ def logout_custom(request):
 #         try:
 #             new_task = task(title=title, date=date, time=time)
 #             new_task.save()
-            
+
 #             # return redirect(new_task)
 
 #         except Exception as e:
@@ -94,4 +100,3 @@ def logout_custom(request):
 #         return redirect(request,'home.html',data)
 
 #     return HttpResponse (request)
-
