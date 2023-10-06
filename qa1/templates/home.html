@@ -117,7 +117,8 @@
     {"status":"{{j.isComplated}}",
     "title":"{{j.title}}",
     "date":"{{j.date}}",
-    "time":"{{j.time}}"},
+    "time":"{{j.time}}",
+    "id":"{{j.id}}"},
     {% if not forloop.last %}
     {% endif %}
     {% endfor %}]
@@ -255,12 +256,12 @@ function defaultsort(){
     row.appendChild(editButton);
     task_container.appendChild(row);
   }
-  }
+ }
 }
 
 $.ajax({
-  type:POST, 
-  data:id, 
+  type:'POST', 
+  data:id:{{}},
   url:"home/"
 })
 </script>  
