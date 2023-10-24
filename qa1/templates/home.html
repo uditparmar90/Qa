@@ -5,7 +5,6 @@
 {% block head %}
 {% endblock head %}
 {%block style%}
-
 {%endblock style%}
 
 {%block body%}
@@ -42,7 +41,7 @@
       </div>
       <div class="modal-body">
         <div class="container .outlined-container" style=" border: 1px solid border-radius: 14px;">
-    <form  method='POST' action="{%url 'addtask'%}" form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
+    <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
           <label for="newTask">Reminder Title:</label>
           <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
@@ -158,67 +157,38 @@
         return 0;
       }
     }
-  //     // Get all the li elements within the ul
-  //     var li = itemList.getElementsByTagName('li');
-  
-  //     // Create an array to store the text content of li elements as numbers
-  //     var arr = [];
-  
-  //     for (var i = 0; i < li.length; i++) {
-  //         arr.push(Number(li[i].innerText));
-  //     }
-  
-  //     // Sort the array numerically
-  //     arr.sort(function(a, b) {
-  //         return a - b;
-  //     });
-  
-  //     // Update the li elements with the sorted content
-  //     for (var i = 0; i < li.length; i++) {
-  //         li[i].innerText = arr[i];
-  //     }
-    {% comment %}
-    document.addEventListener('DOMContentLoaded', function() {
-    let addTaskBtn = document.getElementById('addTaskBtn');
-    let taskInp = document.getElementById('newTask');
-    let taskList = document.getElementById('taskList');
+//
+//     document.addEventListener('DOMContentLoaded', function() {
+//     let addTaskBtn = document.getElementById('addTaskBtn');
+//     let taskInp = document.getElementById('newTask');
+//     let taskList = document.getElementById('taskList');
 
-    //--------------------Add task-----------------------
+//     //--------------------Add task-----------------------
 
-    addTaskBtn.addEventListener('click', function() {
-        let taskText = taskInp.value.trim();
-        if (taskText !== '') {
-            let listItem = document.createElement('li');
-            listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+//     addTaskBtn.addEventListener('click', function() {
+//         let taskText = taskInp.value.trim();
+//         if (taskText !== '') {
+//             let listItem = document.createElement('li');
+//             listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
 
-            let trmContent = document.createElement('span');
-            trmContent.style.flaxWrap= "wrap"; 
-            trmContent.textContent = taskText;
+//             let trmContent = document.createElement('span');
+//             trmContent.style.flaxWrap= "wrap"; 
+//             trmContent.textContent = taskText;
 
-            let editButton = document.createElement('button');
-            editButton.classList.add('btn', 'btn-info', 'btn-sm');
-            editButton.textContent = 'Edit';
+//             let editButton = document.createElement('button');
+//             editButton.classList.add('btn', 'btn-info', 'btn-sm');
+//             editButton.textContent = 'Edit';
 
-            listItem.appendChild(trmContent);
-            listItem.appendChild(editButton);
+//             listItem.appendChild(trmContent);
+//             listItem.appendChild(editButton);
 
-            taskList.appendChild(listItem);
+//             taskList.appendChild(listItem);
 
-            taskInp.value = '';
-        }
-    });
-});{% endcomment %}
+//             taskInp.value = '';
+//         }
+//     });
+// });
 
-{% comment %} {% for i in tasks %}
-        console.log("Title: {{ i.title }}");
-        console.log("Date: {{ i.date }}");
-        console.log("Time: {{ i.time }}");
-        {% endfor %}
- {% endcomment %}
-
-{% comment %} let title=document.getElementById('title') {% endcomment %}
-{% comment %} let time=document.getElementById('time') {% endcomment %}
-{% comment %} let date=document.getElementById('date') {% endcomment %}
 
 //..................print data with javascript...............
 function defaultsort(){
@@ -258,12 +228,6 @@ function defaultsort(){
   }
  }
 }
-
-$.ajax({
-  type:'POST', 
-  data:id:{{}},
-  url:"home/"
-})
 </script>  
 </body>
 </html>

@@ -1,2 +1,12 @@
 bi/
 .vscode/
+db.sqlite3
+**/migrations/
+
+
+# Ignore cache files and directories
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
