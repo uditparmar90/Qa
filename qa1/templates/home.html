@@ -40,7 +40,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container .outlined-container" style=" border: 1px solid border-radius: 14px;">
+        <div class="container outlined-container">
     <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
           <label for="newTask">Reminder Title:</label>
@@ -56,8 +56,38 @@
         </div>
         <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
     </form>
-</div>
+  </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content" style="box-shadow: 0px 20px 50px 15px grey;">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
+    </div>
+    <div class="modal-body">
+      <div class="container outlined-container">
+  <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
+      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+        <label for="newTask">Reminder Title:</label>
+        <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
+      </div>
+      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+          <label for="reminderDate">Date:</label>
+          <input type="date" class="form-control" id="reminderDate" name="reminderDate">
+      </div>
+      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+          <label for="reminderTime">Time:</label>
+          <input type="time" class="form-control" id="reminderTime" name="reminderTime">
+      </div>
+      <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
+  </form>
+</div>
     </div>
   </div>
 </div>
@@ -164,7 +194,6 @@
 //     let taskList = document.getElementById('taskList');
 
 //     //--------------------Add task-----------------------
-
 //     addTaskBtn.addEventListener('click', function() {
 //         let taskText = taskInp.value.trim();
 //         if (taskText !== '') {
