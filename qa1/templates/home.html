@@ -24,12 +24,66 @@
       color:#BB2124;
       font-weight:300;
     }
+    .dropdown-toggle::after {
+      display: none !important;
+    /* display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent; */
+}
   </style>
 </head>
 <body onload="defaultsort()">
 
   
     <!-- ........Add Task Popup.......................................... -->
+
+    <div class="dropdown">
+      <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:54 0px;
+      border-style: none;
+       border: 1px solid black !important; 
+      flex: end;
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 410px;
+    padding: auto;
+    margin: auto;
+    margin-top: 100px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+          <label for="newTask">Take a note...</label>
+        </div>
+      </button>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 410px;">
+        <div class="modal-body">
+          <div class="container outlined-container">
+      <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
+          <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+            <!-- <label for="newTask">Title </label> -->
+            <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Title">
+          </div>
+          <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+              <label for="reminderDate">Date:</label>
+              <input type="date" class="form-control" id="reminderDate" name="reminderDate" placeholder="Title" title="Enter a date (yyyy-mm-dd)">
+          </div>
+          <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+              <label for="reminderTime">Time:</label>
+              <input type="time" class="form-control" id="reminderTime" name="reminderTime" placeholder="Title">
+          </div>
+          <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
+      </form>
+    </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<!--   
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -43,7 +97,7 @@
         <div class="container outlined-container">
     <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-          <label for="newTask">Reminder Title:</label>
+          <label for="newTask">Title:</label>
           <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
         </div>
         <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
@@ -60,11 +114,11 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
-
+<!-- 
 <div class="modal-dialog" role="document">
   <div class="modal-content" style="box-shadow: 0px 20px 50px 15px grey;">
     <div class="modal-header">
@@ -74,7 +128,7 @@
       <div class="container outlined-container">
   <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
       <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-        <label for="newTask">Reminder Title:</label>
+        <label for="newTask">Title:</label>
         <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
       </div>
       <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
@@ -90,7 +144,7 @@
 </div>
     </div>
   </div>
-</div>
+</div> -->
 
     {% comment %} ................resently tasks........................ {% endcomment %}
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
