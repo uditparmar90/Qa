@@ -1,0 +1,101 @@
+{% extends 'GPTindex.html' %}
+{%load static%}
+{% block title %}TodoList{% endblock title %}
+
+{% block head %}{% endblock head %}
+
+{%block style%}
+    
+    
+body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .signup {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+        placeholder{
+            padding:2px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            outline: 1px solid rgb(66, 66, 66);
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: greenyellow;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width:100%;
+            align-items:center;
+            justify-content:center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: limegreen;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+{%endblock style%}
+
+{%block body%}
+
+<div class="main">
+        <h1>This is About Us Pages</h1>
+    </div>
+
+{%endblock body%}
+
+
+{%block script%}
+function submitForm(){
+    var name= document.getElementById('full_name').value;
+    {% comment %} var password= document.getElementById('password').value;
+var welcome= document.getElementById('welcome_name').innerHTML= name;
+ document.write(name); {% endcomment %}
+alert("Success! You submitted: " + name);
+console.log(name);
+
+}
+
+{%endblock script%}

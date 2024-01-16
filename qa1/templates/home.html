@@ -10,6 +10,7 @@
 {%block body%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,13 +21,14 @@
       margin-top: 20px;
     }
 
-    #recently-title{
-      color:#BB2124;
-      font-weight:300;
+    #recently-title {
+      color: #BB2124;
+      font-weight: 300;
     }
+
     .dropdown-toggle::after {
       display: none !important;
-    /* display: inline-block;
+      /* display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
     content: "";
@@ -34,285 +36,197 @@
     border-right: 0.3em solid transparent;
     border-bottom: 0;
     border-left: 0.3em solid transparent; */
-}
+    }
   </style>
 </head>
+
 <body onload="defaultsort()">
 
-  
-    <!-- ........Add Task Popup.......................................... -->
 
-    <div class="dropdown">
-      <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:54 0px;
+  <!-- ........Add Task Popup.......................................... -->
+
+  <div class="dropdown">
+    <button class="btn  dropdown-toggle" type="button" id="add" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false" style="padding:54 0px;
       border-style: none;
-       border: 1px solid black !important; 
+      border: 1px solid black !important; 
       flex: end;
       display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 410px;
-    padding: auto;
-    margin: auto;
-    margin-top: 100px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-          <label for="newTask">Take a note...</label>
-        </div>
-      </button>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 410px;">
-        <div class="modal-body">
-          <div class="container outlined-container">
-      <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
-          <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-            <!-- <label for="newTask">Title </label> -->
-            <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Title">
-          </div>
-          <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-              <label for="reminderDate">Date:</label>
-              <input type="date" class="form-control" id="reminderDate" name="reminderDate" placeholder="Title" title="Enter a date (yyyy-mm-dd)">
-          </div>
-          <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-              <label for="reminderTime">Time:</label>
-              <input type="time" class="form-control" id="reminderTime" name="reminderTime" placeholder="Title">
-          </div>
-          <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
-      </form>
-    </div>
+      align-items: center;
+      justify-content: center;
+      width: 410px;
+      padding: auto;
+      margin: auto;
+      margin-top: 100px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+        <label for="newTask">Take a note...</label>
       </div>
-    </div>
-    </div>
-  </div>
-
-<!--   
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    </button>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+      style="width: 410px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
       <div class="modal-body">
         <div class="container outlined-container">
-    <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
-        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-          <label for="newTask">Title:</label>
-          <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
+          <form method='POST' action="{% url 'addtask' %}" form="addtask" style="display:flex; flex-direction:column;">
+            {% csrf_token %}
+            <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+              <!-- <label for="newTask">Title </label> -->
+              <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Title">
+            </div>
+            <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+              <label for="reminderDate">Date:</label>
+              <input type="date" class="form-control" id="reminderDate" name="reminderDate" placeholder="Title"
+                title="Enter a date (yyyy-mm-dd)">
+            </div>
+            <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
+              <label for="reminderTime">Time:</label>
+              <input type="time" class="form-control" id="reminderTime" name="reminderTime" placeholder="Title">
+            </div>
+            <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
+          </form>
         </div>
-        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-            <label for="reminderDate">Date:</label>
-            <input type="date" class="form-control" id="reminderDate" name="reminderDate">
-        </div>
-        <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-            <label for="reminderTime">Time:</label>
-            <input type="time" class="form-control" id="reminderTime" name="reminderTime">
-        </div>
-        <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
-    </form>
-  </div>
       </div>
     </div>
   </div>
-</div> -->
-
-
-
-<!-- 
-<div class="modal-dialog" role="document">
-  <div class="modal-content" style="box-shadow: 0px 20px 50px 15px grey;">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
-    </div>
-    <div class="modal-body">
-      <div class="container outlined-container">
-  <form  method='POST' action="{% url 'addtask' %}"form="addtask" style="display:flex; flex-direction:column;">{% csrf_token %}
-      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-        <label for="newTask">Title:</label>
-        <input type="text" class="form-control" id="newTask" name="newTask" placeholder="Enter reminder title">
-      </div>
-      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-          <label for="reminderDate">Date:</label>
-          <input type="date" class="form-control" id="reminderDate" name="reminderDate">
-      </div>
-      <div class="form-group" style="display: flex;margin-bottom: 1rem;flex-direction:row;">
-          <label for="reminderTime">Time:</label>
-          <input type="time" class="form-control" id="reminderTime" name="reminderTime">
-      </div>
-      <button type="submit" class="btn btn-primary" id="addTaskBtn">Set Reminder</button>
-  </form>
-</div>
-    </div>
   </div>
-</div> -->
-
-    {% comment %} ................resently tasks........................ {% endcomment %}
-    <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
-  <a class="navbar-brand" href="#" id="recently-title">Recently added Tasks</a>
-<div class="btn-group">
-  <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#" onclick="sort_items()">A-Z</a>
-    <a class="dropdown-item" href="#" onclick="applysortdate()">Recent date</a>
-    <a class="dropdown-item" href="#" onclick="defaultsort()">recent Added</a>
-</div>
-</nav>
-<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" id="taskList">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Status</th>
-        <th scope="col">Title</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Edit</th>
-      </tr>
-    </thead>
-    <tbody id="task_container">
-      {% comment %} dynamic data adds here... {% endcomment %}
+  
+  {% comment %} ................resently tasks........................ {% endcomment %}
+  <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-5 mb-0">
+    <a class="navbar-brand" href="#" id="recently-title">Recently added Tasks</a>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">Sort</button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#" onclick="sort_items()">A-Z</a>
+        <a class="dropdown-item" href="#" onclick="applysortdate()">Recent date</a>
+        <a class="dropdown-item" href="#" onclick="defaultsort()">recent Added</a>
+      </div>
+  </nav>
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0"
+    id="taskList">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Status</th>
+          <th scope="col">Title</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody id="task_container">
+        {% comment %} dynamic data adds here... {% endcomment %}
         {% comment %} <td id="title"></td> {% endcomment %}
         {% comment %} <td id="time"></td> {% endcomment %}
         {% comment %} <td id="date"></td> {% endcomment %}
 
-      {% comment %} {% for i in task %}
-      <tr>
-        <div id="itemList">
-          <th scope="row" class="data">{{i.id}}</th>
-          <td class="data">{{i.title}}</td>
-          <td class="data">{{i.date}}</td>  
-          <td class="data">{{i.time}}</td>
-          <td class="data"><button type="button" name="ltoh" id="sort" class="btn btn-outline-danger">Delete</button></td> 
-        </div>
-      </tr>
-      {%endfor%} {% endcomment %}
-    </tbody>
-  </table>
-</div>
+        {% comment %} {% for i in task %}
+        <tr>
+          <div id="itemList">
+            <th scope="row" class="data">{{i.id}}</th>
+            <td class="data">{{i.title}}</td>
+            <td class="data">{{i.date}}</td>
+            <td class="data">{{i.time}}</td>
+            <td class="data"><button type="button" name="ltoh" id="sort" class="btn btn-outline-danger">Delete</button>
+            </td>
+          </div>
+        </tr>
+        {%endfor%} {% endcomment %}
+      </tbody>
+    </table>
+  </div>
 
-   <script>
-//..................to prevent resubmission of user data........................
-    if ( window.history.replaceState ) {
-      window.history.replaceState( null, null, window.location.href );
-  }
-//...................retrive data from DataBase...........................
-    var task=[{%for j in task%}
-    {"status":"{{j.isComplated}}",
-    "title":"{{j.title}}",
-    "date":"{{j.date}}",
-    "time":"{{j.time}}",
-    "id":"{{j.id}}"},
+  <script>
+    //..................to prevent resubmission of user data........................
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+    //...................retrive data from DataBase...........................
+    var task = [{%for j in task %}
+    {
+      "status": "{{j.isComplated}}", "title": "{{j.title}}", "date": "{{j.date}}", "time": "{{j.time}}", "id": "{{j.id}}"
+    },
     {% if not forloop.last %}
     {% endif %}
     {% endfor %}]
-    console.log(task);
 
-    let sort=document.getElementById('sort')
-    function sort_items(a,b){
+    let sort = document.getElementById('sort')
+    function sort_items(a, b) {
       //location.reload();
       task.sort(sort_title);
-      task_container.innerHTML="";
+      task_container.innerHTML = "";
       defaultsort();
     }
-    function sort_title(a,b){
-      const titleA=a.title.toLowerCase();
-      const titleB=b.title.toLowerCase();
-      if(titleA<titleB){
+    function sort_title(a, b) {
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      if (titleA < titleB) {
         return -1;
-      }else if(titleA>titleB){
+      } else if (titleA > titleB) {
         return 1;
-      }else{
+      } else {
         return 0;
       }
     }
-    function applysortdate(){
+    function applysortdate() {
       task.sort(sort_date);
       console.log(task);
       defaultsort();
     }
-    function sort_date(a,b){
-      const date1= new Date(a.date);
-      const date2=new Date(b.date);
-      if(date1<date2){
+    function sort_date(a, b) {
+      const date1 = new Date(a.date);
+      const date2 = new Date(b.date);
+      if (date1 < date2) {
         return -1;
-      }else if(date1>date2){
+      } else if (date1 > date2) {
         return 1;
-      }else{
+      } else {
         return 0;
       }
     }
-//
-//     document.addEventListener('DOMContentLoaded', function() {
-//     let addTaskBtn = document.getElementById('addTaskBtn');
-//     let taskInp = document.getElementById('newTask');
-//     let taskList = document.getElementById('taskList');
+    
+    //..................print data with javascript...............
+    function defaultsort() {
+      task_container.innerHTML = '';
+      for (let i = 0; i < task.length; i++) {
+        if (task[i]) {
+          let row = document.createElement("tr");
+          let no = document.createElement("td");
+          no.innerHTML = i + 1;
+          row.appendChild(no);
 
-//     //--------------------Add task-----------------------
-//     addTaskBtn.addEventListener('click', function() {
-//         let taskText = taskInp.value.trim();
-//         if (taskText !== '') {
-//             let listItem = document.createElement('li');
-//             listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-
-//             let trmContent = document.createElement('span');
-//             trmContent.style.flaxWrap= "wrap"; 
-//             trmContent.textContent = taskText;
-
-//             let editButton = document.createElement('button');
-//             editButton.classList.add('btn', 'btn-info', 'btn-sm');
-//             editButton.textContent = 'Edit';
-
-//             listItem.appendChild(trmContent);
-//             listItem.appendChild(editButton);
-
-//             taskList.appendChild(listItem);
-
-//             taskInp.value = '';
-//         }
-//     });
-// });
-
-
-//..................print data with javascript...............
-function defaultsort(){
-  task_container.innerHTML='';
-  for(let i=0;i<task.length;i++){
-    if(task[i]){
-    let row =document.createElement("tr");
-    let no=document.createElement("td");
-    no.innerHTML=i+1;
-    row.appendChild(no);
-
-    let isCompleted = document.createElement("input");
-    isCompleted.type="checkbox";
-    isCompleted.classList.add("form-check-input");
-    if(task[i].status!="False"){
-      isCompleted.defaultChecked=true;
+          let isCompleted = document.createElement("input");
+          isCompleted.type = "checkbox";
+          isCompleted.classList.add("form-check-input");
+          if (task[i].status != "False") {
+            isCompleted.defaultChecked = true;
+          }
+          console.log(isCompleted);
+          row.appendChild(isCompleted);
+          let title = document.createElement("td");
+          title.innerHTML = task[i].title;
+          row.appendChild(title);
+          let date = document.createElement("td");
+          date.innerHTML = task[i].date;
+          row.appendChild(date);
+          let time = document.createElement("td");
+          time.innerHTML = task[i].time;
+          row.appendChild(time);
+          let editButton = document.createElement("button");
+          editButton.classList.add("btn", "btn-primary")
+          editButton.setAttribute('id', task[i].title)
+          editButton.innerHTML = "Edit";
+          editButton.style.padding = "5px 10px";
+          editButton.style.margin = "10px 0px";
+          row.appendChild(editButton);
+          task_container.appendChild(row);
+        }
+      }
     }
-    console.log(isCompleted);
-    row.appendChild(isCompleted);
-    let title=document.createElement("td");
-    title.innerHTML=task[i].title;
-    row.appendChild(title);
-    let date=document.createElement("td");
-    date.innerHTML=task[i].date;
-    row.appendChild(date);
-    let time=document.createElement("td");
-    time.innerHTML=task[i].time;
-    row.appendChild(time);
-    let editButton=document.createElement("button");
-    editButton.classList.add("btn","btn-primary")
-    editButton.setAttribute('id',task[i].title)
-    editButton.innerHTML="Edit";
-    editButton.style.padding = "5px 10px";
-    editButton.style.margin= "10px 0px";
-    row.appendChild(editButton);
-    task_container.appendChild(row);
-  }
- }
-}
-</script>  
+  </script>
 </body>
+
 </html>
 {%endblock body%}
 {% comment %} {%block script%}

@@ -10,8 +10,10 @@ from qa1.models import task
 
 
 def index(request):
-
     return render(request, 'GPTindex.html')
+
+def about_us(request):
+    return render(request, 'about_us.html')
 
 
 def sign_up(request):

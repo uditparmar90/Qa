@@ -11,14 +11,11 @@
     <!-- fontAwesome icon -->
   <script src="https://kit.fontawesome.com/2e45d17cb8.js" crossorigin="anonymous"></script> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- jQuery cdn link -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js">
-    </script>
   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
   {%block head%}{%endblock head%}
 </head>
 <style>
-  .user_content {
+  /* .user_content {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -29,7 +26,7 @@
             box-sizing: border-box;
             z-index: 100;
             display: none;
-        }  
+        }   */
         .close-btn {
             position: absolute;
             right: 20px;
@@ -84,13 +81,13 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item" >
-            <a class="nav-link" href="" style="color:white;">Home</a>
+            <a class="nav-link" href="{%url 'home'%}" style="color:white;">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'signup' %}" style="color:white;">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" style="color:white;">About Us</a>
+            <a class="nav-link" href="{%url 'about_us' %}" style="color:white;">About Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="color:white;">More Features</a>
@@ -165,6 +162,9 @@
     let body = document.getElementsByTagName("body")[0];
     body.style.backgroundColor = "rgb(74, 74, 74)";
     body.style.color="white";
+    let add_task=document.getElementById("add_note_btn");
+    add_task.style.boxShadow="0 4px 8px 0 #808080, 0 6px 20px 0 #808080";
+    add_task.style.border="20px solid white !important";
     //...........recent title .......................
     let recent=document.querySelector(".navbar.navbar-light.bg-light.px-3.mt-5.mb-0");
     recent.classList.add("bg-secondary");
